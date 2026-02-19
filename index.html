@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BE FLY</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+background:#0c0c0c;
+color:white;
+overflow-x:hidden;
+position:relative;
+}
+
+/* AESTHETIC BACKGROUND IMAGES */
+.bg{
+position:fixed;
+z-index:-1;
+opacity:0.18;
+filter:grayscale(100%) contrast(120%);
+mix-blend-mode:lighten;
+}
+
+.bg1{
+top:-50px;
+left:-80px;
+width:350px;
+transform:rotate(-10deg);
+}
+
+.bg2{
+bottom:-100px;
+right:-60px;
+width:400px;
+transform:rotate(8deg);
+}
+
+.bg3{
+top:40%;
+left:-120px;
+width:280px;
+transform:rotate(-15deg);
+}
+
+.bg4{
+bottom:25%;
+right:-150px;
+width:380px;
+transform:rotate(12deg);
+}
+
+/* NAV */
+nav{
+display:flex;
+justify-content:space-between;
+padding:30px 60px;
+letter-spacing:3px;
+font-size:14px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:30px;
+cursor:pointer;
+}
+
+/* HERO */
+.hero{
+text-align:center;
+margin-top:140px;
+}
+
+.hero h1{
+font-size:85px;
+letter-spacing:8px;
+font-weight:900;
+}
+
+.hero p{
+margin-top:20px;
+opacity:0.6;
+letter-spacing:3px;
+}
+
+/* PRODUCTS */
+.products{
+margin-top:140px;
+padding:0 12%;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:60px;
+}
+
+.card{
+cursor:pointer;
+transition:0.3s;
+background:#111;
+padding:20px;
+border:1px solid #222;
+}
+
+.card:hover{
+transform:translateY(-8px);
+border-color:#444;
+}
+
+.card h3{
+font-size:15px;
+letter-spacing:2px;
+}
+
+.price{
+margin-top:10px;
+opacity:0.6;
+}
+
+/* PRODUCT PAGE */
+.page{
+display:none;
+padding:100px 12%;
+min-height:100vh;
+}
+
+.active{
+display:block;
+}
+
+.product-wrapper{
+display:flex;
+flex-wrap:wrap;
+gap:80px;
+}
+
+.product-image{
+flex:1;
+min-width:320px;
+height:520px;
+background:#111;
+border:1px solid #222;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#444;
+letter-spacing:2px;
+}
+
+.product-info{
+flex:1;
+min-width:280px;
+}
+
+.product-info h2{
+font-size:28px;
+letter-spacing:3px;
+}
+
+.sizes{
+margin:30px 0;
+}
+
+.size{
+display:inline-block;
+border:1px solid #444;
+padding:12px 18px;
+margin-right:10px;
+cursor:pointer;
+}
+
+.size:hover{
+border-color:white;
+}
+
+.btn{
+margin-top:20px;
+display:block;
+padding:15px;
+width:220px;
+background:white;
+color:black;
+border:none;
+cursor:pointer;
+letter-spacing:2px;
+}
+
+/* CART */
+.cart-item{
+border-bottom:1px solid #333;
+padding:20px 0;
+}
+
+.total{
+margin-top:40px;
+font-size:20px;
+letter-spacing:2px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND IMAGES -->
+<img src="1.jpeg" class="bg bg1">
+<img src="2.jpeg" class="bg bg2">
+<img src="3.jpeg" class="bg bg3">
+<img src="4.jpg" class="bg bg4">
+
+<nav>
+<div>BE FLY</div>
+<div>
+<a onclick="show('home')">HOME</a>
+<a onclick="show('cart')">CART</a>
+</div>
+</nav>
+
+<!-- HOME -->
+<div id="home" class="active">
+
+<div class="hero">
+<h1>BE FLY</h1>
+<p>STREET / MINIMAL / GRUNGE</p>
+</div>
+
+<div class="products">
+
+<div class="card" onclick="show('product')">
+<h3>8-Ball Hand Painted Baggy Jeans</h3>
+<div class="price">₹1499</div>
+</div>
+
+<div class="card">
+<h3>Blank</h3>
+<div class="price">₹1499</div>
+</div>
+
+</div>
+</div>
+
+<!-- PRODUCT PAGE -->
+<div id="product" class="page">
+
+<div class="product-wrapper">
+
+<div class="product-image">
+PRODUCT IMAGE COMING SOON
+</div>
+
+<div class="product-info">
+<h2>8-Ball Hand Painted Baggy Jeans</h2>
+<div class="price">₹1499</div>
+
+<div class="sizes">
+<span class="size">S</span>
+<span class="size">M</span>
+<span class="size">L</span>
+<span class="size">XL</span>
+</div>
+
+<button class="btn" onclick="show('cart')">ADD TO CART</button>
+<button class="btn" onclick="show('cart')">BUY NOW</button>
+
+</div>
+</div>
+</div>
+
+<!-- CART -->
+<div id="cart" class="page">
+
+<h2 style="letter-spacing:3px;">CART</h2>
+
+<div class="cart-item">
+8-Ball Hand Painted Baggy Jeans — ₹1499
+</div>
+
+<div class="total">
+TOTAL: ₹1499
+</div>
+
+<button class="btn">CHECKOUT</button>
+
+</div>
+
+<script>
+function show(id){
+document.querySelectorAll('.page, #home').forEach(el=>{
+el.classList.remove('active');
+});
+document.getElementById(id).classList.add('active');
+window.scrollTo(0,0);
+}
+</script>
+
+</body>
+</html>
